@@ -3,6 +3,7 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var mcArray = [];
 var check = 0;
+var txtSave = '';
 
 async function downloadImage(url, filename) {
     const response = await axios.get(url, { responseType: 'arraybuffer' });
@@ -15,7 +16,7 @@ async function downloadImage(url, filename) {
   }
   
 
-axios.get('https://mangakomi.io/manga/one-punch-man/chapter-1')
+axios.get('https://mangaeffect.com/manga/spy-x-family/chapter-1')
 .then(response => {
     var $ = cheerio.load(response.data);
     var count = 1;
@@ -28,9 +29,24 @@ axios.get('https://mangakomi.io/manga/one-punch-man/chapter-1')
     })
     // console.log(mcArray);
     mcArray.forEach((element, index) => {
-        downloadImage(element, `image/${index}.jpg`);
+        downloadImage(element, `image/comics/spy-x-family/chapter-1/${index+1}.jpg`);
+        txtSave += `<img src="https://comicshito.com/wp-content/mcmedia/comics/spy-x-family/chapter-1/${index+1}.jpg" class="content-comics" alt="Content Image">\n`;
+    });
+    fs.writeFile('image/comics/spy-x-family/chapter-1/input.txt', txtSave,  function(err) {
+            if (err) {
+                return console.error(err);
+            }
+            // fs.readFile('image/comics/input.txt', function (err, data) {
+            //    if (err) {
+            //       return console.error(err);
+            //    }
+            //    console.log("Noi dung file: " + data.toString());
+            // });
     });
     
 }).catch(function (error) {
     console.log(error);
 });
+
+// https://comicshito.com/wp-content/mcmedia/comics/acb.png
+
