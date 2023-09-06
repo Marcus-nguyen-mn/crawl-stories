@@ -4,7 +4,7 @@ var fs = require('fs');
 var mcArray = [];
 var check = 0;
 var txtSave = '';
-var chap = 'chapter-1';
+var chap = 'chapter-87';
 
 async function downloadImage(url, filename) {
     const response = await axios.get(url, { responseType: 'arraybuffer' });
@@ -32,7 +32,7 @@ axios.get(`https://mangaeffect.com/manga/spy-x-family/${chap}`)
         downloadImage(element, `image/comics/spy-x-family/${chap}/${index+1}.jpg`);
         txtSave += `<img src="https://comicshito.com/wp-content/mcmedia/comics/spy-x-family/${chap}/${index+1}.jpg" class="content-comics" alt="Content Image">\n`;
     });
-    fs.writeFile(`image/comics/spy-x-family/${chap}.txt`, txtSave,  function(err) {
+    fs.writeFile(`image/comics/spy-x-family/content/${chap}.txt`, txtSave,  function(err) {
             if (err) {
                 return console.error(err);
             }
