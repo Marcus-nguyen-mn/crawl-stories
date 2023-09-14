@@ -4,7 +4,7 @@ var fs = require('fs');
 var mcArray = [];
 var check = 0;
 var txtSave = '';
-var inter = 1;
+var inter = 151;
 var chap = '';
 
 async function downloadImage(url, filename) {
@@ -17,9 +17,9 @@ async function downloadImage(url, filename) {
     }); 
   }
   
-const myInterval = setInterval(mcCrawl, 6000);
+const myInterval = setInterval(mcCrawl, 10000);
 function mcCrawl(){
-    if(inter > 2){
+    if(inter > 232){
         clearInterval(myInterval);
     }else{
         chap = 'chapter-'+inter;
